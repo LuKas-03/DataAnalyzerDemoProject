@@ -1,0 +1,26 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    @if (!Model.IsShowResults)
+    {
+        <h1 class="display-4">Добро пожаловать!</h1>
+        <p>Загрузите csv или xls файл</p>
+        <form method="post" enctype="multipart/form-data">
+            <p><input type="file" asp-for="FileSource.UploadFile" /></p>
+            <label>Количетсво пропускаемых строк <input asp-for="FileSource.MissLinesCount" /></label>
+            <input type="submit" />
+        </form>
+    }
+    else
+    {
+        @foreach(string line in Model.Values)
+        {
+            <p> @line </p>
+        }
+    }
+
+</div>
